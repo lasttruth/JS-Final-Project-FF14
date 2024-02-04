@@ -13,9 +13,26 @@ li{
     list-style-type: none;
 }
 
+
+
+h2{
+    color: #fff;
+    font-weight: 400;
+    font-size: 60px;
+    margin-bottom: 32px;
+   
+}
+
+p{
+    color: #fff;
+    font-size: 16px;
+    line-height: 2;
+
+}
+
 nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1200px;
@@ -31,6 +48,7 @@ nav{
 .container{
     padding: 50px 0;
     width: 100%;
+    margin: auto 0;
 }
 
 .row{
@@ -40,14 +58,17 @@ nav{
     padding: 0 12px;
 }
 
-/*
-*
-*Section Header
-*
-*/
+.secondary{
+    color: #D8B371;
+}
 
 #landing-page{
     min-height: 100vh;
+}
+
+.landing__background--img{
+    background-image: url(./assests/FF14FC.png);
+    height: 100vh;
 }
 
 /*
@@ -67,6 +88,7 @@ nav{
 
 .nav__link--list{
     display: flex;
+    padding-left: 100px;
 }
 
 .nav__link--anchor {
@@ -108,4 +130,44 @@ nav{
 .link__hover--effect:hover::after{
     left: 0;
     width: 100%;
+}
+
+/*
+*
+* 
+HEADER
+*
+*
+*/
+
+.hs-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hs__title{
+    font-size: 60px;
+    margin-bottom: 12px;
+    text-align: left;
+    line-height: 1;
+}
+
+.hs__para{
+    font-size: 16px;
+    line-height: 2;
+    max-width: 450px;
+}
+
+.hs__btn{
+    text-align: center;
+    font-size: 16px;
+    color: #131313;
+    padding: 16px 30px;
+    min-width: 152;
+    border-radius: 52px;
+    font-weight: 500;
+    border: none;
+    background-color: #D8B371;
+    cursor: pointer;
 }
