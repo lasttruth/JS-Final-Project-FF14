@@ -32,10 +32,9 @@ p{
 
 nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     height: 100px;
@@ -69,6 +68,11 @@ nav{
 .landing__background--img{
     background-image: url(./assests/FF14FC.png);
     height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    
 }
 
 /*
@@ -139,6 +143,12 @@ HEADER
 *
 *
 */
+
+.header_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .hs-text{
     display: flex;
