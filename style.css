@@ -161,12 +161,15 @@ HEADER
     margin-bottom: 12px;
     text-align: left;
     line-height: 1;
+    padding-bottom: 8px;
 }
 
 .hs__para{
     font-size: 16px;
     line-height: 2;
     max-width: 450px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .hs__btn{
