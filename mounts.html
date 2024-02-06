@@ -22,9 +22,7 @@
           >
         </li>
         <li class="nav__link">
-          <a class="nav__link--anchor link__hover--effect" href="#"
-            >Contact</a
-          >
+          <a class="nav__link--anchor link__hover--effect" href="#">Contact</a>
         </li>
       </ul>
       <div class="user-panel">
@@ -36,24 +34,40 @@
     <main id="mounts__main">
       <section>
         <div class="container">
-            <div class="row">
-              <div class="mount__header">
-                <h2>
-                  All Mounts
-                </h2>
-                <select name="" id="filter">
-                  <option value="" disabled selected> Expansion</option>
-                  <option value="ARR">A Realm Reborn</option>
-                  <option value="HW">Heavensward</option>
-                  <option value="SB">Stormblood</option>
-                  <option value="ShB">Shadowbringers</option>
-                  <option value="EW">Endwalker</option>
-                </select>
-              </div>
-                <div class="mounts">
-                  
-                </div>
+          <div class="row">
+            <div class="mount__header">
+              <h2 class="mount__header--title">
+                All <span class="secondary"> Mounts </span>
+              </h2>
+              <select name="" id="filter">
+                <option value="" disabled selected>Expansion</option>
+                <option value="ARR">A Realm Reborn</option>
+                <option value="HW">Heavensward</option>
+                <option value="SB">Stormblood</option>
+                <option value="ShB">Shadowbringers</option>
+                <option value="EW">Endwalker</option>
+              </select>
             </div>
+            <div class="mounts-card">
+              <figure class="mount__img--wrapper">
+                <img class="mount__img" src="assests/ufo.png" alt="" />
+              </figure>
+              <div class="mount__content--wrapper">
+                <div class="mount__content">
+                  
+                  <h4 class="mount__title">UFO</h4>
+                  <div class="mount__source--wrapper">
+                    <img class="mount__source--img" src="/assests/ff14icon.png" alt="">
+                    <p class="mount__source">Quest</p>
+                  </div>
+                  <div class="mount__tags">
+                    <p class="mount__patch">Patch:6.55</p>
+                    <p class="mount__owners">7.6%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
