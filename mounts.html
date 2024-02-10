@@ -14,7 +14,7 @@
       </a>
       <ul class="nav__link--list">
         <li class="nav__link">
-          <a class="nav__link--anchor link__hover--effect" href="#">Home</a>
+          <a class="nav__link--anchor link__hover--effect" href="index.html">Home</a>
         </li>
         <li class="nav__link">
           <a class="nav__link--anchor link__hover--effect" href="#"
@@ -39,7 +39,7 @@
               <h2 class="mount__header--title">
                 All <span class="secondary"> Mounts </span>
               </h2>
-              <select name="" id="filter">
+              <select name="" id="filter" onchange="filterMounts(event)">
                 <option value="" disabled selected>Expansion</option>
                 <option value="ARR">A Realm Reborn</option>
                 <option value="HW">Heavensward</option>
