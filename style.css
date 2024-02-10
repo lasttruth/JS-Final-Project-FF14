@@ -208,14 +208,30 @@ select {
   max-width: 200px;
 }
 
-.mounts-card {
+.mounts__list {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.mount__card{
+  display: flex;
+  flex-wrap: wrap;
   width: 25%;
+  margin: 8px;
   padding: 16px ;
   border: 4px solid #d8b371;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
-
+  transition: all 300ms ease;
 }
+
+.mount__card:hover{
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+  transform: scale(1.03);
+}
+
 
 .mount__img--wrapper{
   margin-bottom: 8px;
