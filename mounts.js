@@ -1,3 +1,5 @@
+//https://ffxivcollect.com/api/mounts/mount.id
+
 async function main(filter) {
   const mounts = await fetch("https://ffxivcollect.com/api/mounts");
   const mountData = await mounts.json();
@@ -104,8 +106,13 @@ async function main(filter) {
 
 main();
 
+function showMount(id){
+    localStorage.setItem("id", id);
+    window.location.href = `${window.location.origin}/mount.html`
+}
+
 function listTitleHtml(expansion) {
-  return `<h2 class="mount__header--title">
+  return `<h2 class="mounts__header--title">
   ${expansion} <span class="secondary"> Mounts </span>
 </h2>
 <select name="" id="filter" onchange="filterMounts(event)">
@@ -119,24 +126,24 @@ function listTitleHtml(expansion) {
 }
 
 function mountHtml(mount) {
-  return ` <div class="mount__card">
-    <figure class="mount__img--wrapper">
-      <img class="mount__img" src="${mount.image}" alt="" />
+  return ` <div class="mounts__card" onclick="showMount(${mount.id})">
+    <figure class="mounts__img--wrapper">
+      <img class="mounts__img" src="${mount.image}" alt="" />
     </figure>
-    <div class="mount__content--wrapper">
-      <div class="mount__content">
-        <h4 class="mount__title">${mount.name}</h4>
-        <div class="mount__source--wrapper">
+    <div class="mounts__content--wrapper">
+      <div class="mounts__content">
+        <h4 class="mounts__title">${mount.name}</h4>
+        <div class="mounts__source--wrapper">
           <img
-            class="mount__source--img"
+            class="mounts__source--img"
             src="/assests/ff14icon.png"
             alt=""
           />
-          <p class="mount__source">${mount.sources[0].type}</p>
+          <p class="mounts__source">${mount.sources[0].type}</p>
         </div>
-        <div class="mount__tags">
-          <p class="mount__patch">Patch:${mount.patch}</p>
-          <p class="mount__owners">${mount.owned}%</p>
+        <div class="mounts__tags">
+          <p class="mounts__patch">Patch:${mount.patch}</p>
+          <p class="mounts__owners">${mount.owned}%</p>
         </div>
       </div>
     </div>
