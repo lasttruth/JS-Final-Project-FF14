@@ -5,6 +5,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+body{
+  background-color: #282a2e;
+}
+
 a {
   text-decoration: none;
 }
@@ -309,7 +313,8 @@ Mount Page
   flex-direction: row;
   border: 2px solid #d8b371;
   border-radius: 4px;
-  padding: 8px 32px 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+  padding: 0px 0px 24px;
 }
 
 .mount__img-wrapper{
@@ -323,13 +328,31 @@ Mount Page
 
 .mount__content-wrapper{
   display: flex;
+  position: relative;
   justify-content: center;
   flex-direction: column;
   width: 100%;
 }
 
 .mount__name{
+  display: flex;
+  align-items: center;
   background-color: #131313;
+  padding-left: 4px;
+}
+
+.mount__name--txt {
+  color: #d8b371;
+  padding-left: 8px;
+  font-size: 52px;
+  
+}
+
+.mount__name--img{
+  width: 44px;
+  border: 2px solid #d8b371;
+  border-radius: 2px;
+
 }
 
 
@@ -346,7 +369,18 @@ Mount Page
   
 }
 
+.sources{
+  display: flex;
+  align-items: center;
+}
+
+.sources__img{
+  width: 32px;
+  padding-bottom: 8px;
+}
+
 dt{
+  padding-top: 12px;
   margin-bottom: 16px;
 }
 
@@ -358,7 +392,4 @@ dd{
 .mount__stats--wrapper dt {
   margin: 8px auto;
 }
-.mount__name h2 {
-  color: #d8b371;
-  padding-left: 8px;
-}
+
