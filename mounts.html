@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Companies</title>
+    <title>Mounts</title>
     <link rel="stylesheet" href="style.css" />
     <script src="/mounts.js"></script>
   </head>
@@ -14,7 +14,9 @@
       </a>
       <ul class="nav__link--list">
         <li class="nav__link">
-          <a class="nav__link--anchor link__hover--effect" href="index.html">Home</a>
+          <a class="nav__link--anchor link__hover--effect" href="index.html"
+            >Home</a
+          >
         </li>
         <li class="nav__link">
           <a class="nav__link--anchor link__hover--effect" href="#"
@@ -36,9 +38,11 @@
         <div class="container">
           <div class="row">
             <div class="mounts__header">
-              <h2 class="mounts__header--title">
-                All <span class="secondary"> Mounts </span>
-              </h2>
+              <div>
+                <h2 class="mounts__header--title">
+                  All <span class="secondary"> Mounts </span>
+                </h2>
+              </div>
               <select name="" id="filter" onchange="filterMounts(event)">
                 <option value="" disabled selected>Expansion</option>
                 <option value="ARR">A Realm Reborn</option>
@@ -48,8 +52,11 @@
                 <option value="EW">Endwalker</option>
               </select>
             </div>
-            <div class="mounts__list">
-              
+            <div class="mounts__list"></div>
+            <div class="button__wrapper">
+              <button class="show-more button__arrow" >
+                Show More!
+              </button>
             </div>
           </div>
         </div>

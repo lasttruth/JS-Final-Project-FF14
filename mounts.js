@@ -4,104 +4,65 @@ async function main(filter) {
   const mounts = await fetch("https://ffxivcollect.com/api/mounts");
   const mountData = await mounts.json();
   const mountList = document.querySelector(".mounts__list");
-  let listTitle = document.querySelector(".mount__header");
+  const listTitle = document.querySelector(".mounts__header");
+  const showMoreButton = document.querySelector(".show-more");
   
-  const arr = "A Realm Reborn ";
-  const hw = "Heavensward ";
-  const sb = "Stormblood ";
-  const shb = "Shadowbringers ";
-  const ew = "Endwalkers ";
   
-  console.log(mountData);
+  const expansions = {
+    ARR: { min: 2.0, max: 3.0, title: "A Realm Reborn" },
+    HW: { min: 3.0, max: 4.0, title: "Heavensward" },
+    SB: { min: 4.0, max: 5.0, title: "Stormblood" },
+    ShB: { min: 5.0, max: 6.0, title: "Shadowbringers" },
+    EW: { min: 6.0, max: 7.0, title: "Endwalker" },
+  };
+  
 
   let filteredAndSortedResults = mountData.results;
 
-  if (filter === "ARR") {
-    
+  if (filter in expansions) {
+    const { min, max, title } = expansions[filter];
+
     filteredAndSortedResults = filteredAndSortedResults
       .filter((mount) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
         const patch = parseFloat(mount.patch);
-        return patch >= 2.0 && patch < 3.0;
+        return patch >= min && patch < max;
       })
       .sort((a, b) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
         const patchA = parseFloat(a.patch);
         const patchB = parseFloat(b.patch);
-
-        // Compare the patch versions
         return patchA - patchB;
       });
-      listTitle.innerHTML = listTitleHtml(arr);
-  } else if (filter === "HW") {
-    filteredAndSortedResults = filteredAndSortedResults
-      .filter((mount) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patch = parseFloat(mount.patch);
-        return patch >= 3.0 && patch < 4.0;
-      })
-      .sort((a, b) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patchA = parseFloat(a.patch);
-        const patchB = parseFloat(b.patch);
 
-        // Compare the patch versions
-        return patchA - patchB;
-      });
-      listTitle.innerHTML = listTitleHtml(hw);
-  } else if (filter === "SB") {
-    filteredAndSortedResults = filteredAndSortedResults
-      .filter((mount) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patch = parseFloat(mount.patch);
-        return patch >= 4.0 && patch < 5.0;
-      })
-      .sort((a, b) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patchA = parseFloat(a.patch);
-        const patchB = parseFloat(b.patch);
-
-        // Compare the patch versions
-        return patchA - patchB;
-      });
-      listTitle.innerHTML = listTitleHtml(sb);
-  } else if (filter === "ShB") {
-    filteredAndSortedResults = filteredAndSortedResults
-      .filter((mount) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patch = parseFloat(mount.patch);
-        return patch >= 5.0 && patch < 6.0;
-      })
-      .sort((a, b) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patchA = parseFloat(a.patch);
-        const patchB = parseFloat(b.patch);
-
-        // Compare the patch versions
-        return patchA - patchB;
-      });
-      listTitle.innerHTML = listTitleHtml(shb);
-  } else if (filter === "EW") {
-    filteredAndSortedResults = filteredAndSortedResults
-      .filter((mount) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patch = parseFloat(mount.patch);
-        return patch >= 6.0 && patch < 7.0;
-      })
-      .sort((a, b) => {
-        // Assuming "patch" is a string representing a version number like "6.55"
-        const patchA = parseFloat(a.patch);
-        const patchB = parseFloat(b.patch);
-
-        // Compare the patch versions
-        return patchA - patchB;
-      });
-      listTitle.innerHTML = listTitleHtml(ew);
+    listTitle.innerHTML = listTitleHtml(title);
   }
 
-  mountList.innerHTML = filteredAndSortedResults
+  const initialDisplayCount = filter ? filteredAndSortedResults.length : 20;
+  const initialMountCards = filteredAndSortedResults.slice(0, initialDisplayCount);
+  
+
+  mountList.innerHTML = initialMountCards
     .map((mount) => mountHtml(mount))
     .join("");
+
+
+    if (filteredAndSortedResults.length > initialDisplayCount) {
+        showMoreButton.style.display = "flex";
+      } else {
+        showMoreButton.style.display = "none";
+      }
+
+      showMoreButton.addEventListener("click", function () {
+        const currentMountCount = mountList.childElementCount;
+        const remainingMounts = filteredAndSortedResults.slice(currentMountCount);
+        const mountsToShow = remainingMounts.slice(0, initialDisplayCount);
+        mountList.innerHTML += mountsToShow.map((mount) => mountHtml(mount)).join("");
+    
+        if (filteredAndSortedResults.length <= currentMountCount + initialDisplayCount) {
+          showMoreButton.style.display = "none";
+        }
+      });
+
+      showMoreButton.style.display = filter ? "none" : "flex";
 }
 
 main();
@@ -113,8 +74,10 @@ function showMount(id){
 
 function listTitleHtml(expansion) {
   return `<h2 class="mounts__header--title">
+  <div>
   ${expansion} <span class="secondary"> Mounts </span>
 </h2>
+  </div>
 <select name="" id="filter" onchange="filterMounts(event)">
   <option value="" disabled selected>Expansion</option>
   <option value="ARR">A Realm Reborn</option>
@@ -126,7 +89,7 @@ function listTitleHtml(expansion) {
 }
 
 function mountHtml(mount) {
-  return ` <div class="mounts__card" onclick="showMount(${mount.id})">
+  return ` <div class="mounts__card"  onclick="showMount(${mount.id})">
     <figure class="mounts__img--wrapper">
       <img class="mounts__img" src="${mount.image}" alt="" />
     </figure>
@@ -147,7 +110,8 @@ function mountHtml(mount) {
         </div>
       </div>
     </div>
-  </div> `;
+  </div> 
+  `;
 }
 
 function filterMounts(event) {
