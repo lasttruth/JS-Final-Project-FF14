@@ -1,13 +1,13 @@
 //https://ffxivcollect.com/api/mounts/mount.id
+const mountList = document.querySelector(".mounts__list");
+const listTitle = document.querySelector(".mounts__header");
+const showMoreButton = document.querySelector(".show-more");
+const f = document.getElementById("form");
 
 async function main(filter) {
   const mounts = await fetch("https://ffxivcollect.com/api/mounts");
   const mountData = await mounts.json();
-  const mountList = document.querySelector(".mounts__list");
-  const listTitle = document.querySelector(".mounts__header");
-  const showMoreButton = document.querySelector(".show-more");
-  
-  
+
   const expansions = {
     ARR: { min: 2.0, max: 3.0, title: "A Realm Reborn" },
     HW: { min: 3.0, max: 4.0, title: "Heavensward" },
@@ -15,7 +15,6 @@ async function main(filter) {
     ShB: { min: 5.0, max: 6.0, title: "Shadowbringers" },
     EW: { min: 6.0, max: 7.0, title: "Endwalker" },
   };
-  
 
   let filteredAndSortedResults = mountData.results;
 
@@ -37,39 +36,57 @@ async function main(filter) {
   }
 
   const initialDisplayCount = filter ? filteredAndSortedResults.length : 20;
-  const initialMountCards = filteredAndSortedResults.slice(0, initialDisplayCount);
-  
+  const initialMountCards = filteredAndSortedResults.slice(
+    0,
+    initialDisplayCount
+  );
 
   mountList.innerHTML = initialMountCards
     .map((mount) => mountHtml(mount))
     .join("");
 
+  if (filteredAndSortedResults.length > initialDisplayCount) {
+    showMoreButton.style.display = "flex";
+  } else {
+    showMoreButton.style.display = "none";
+  }
 
-    if (filteredAndSortedResults.length > initialDisplayCount) {
-        showMoreButton.style.display = "flex";
-      } else {
-        showMoreButton.style.display = "none";
-      }
+  showMoreButton.addEventListener("click", function () {
+    const currentMountCount = mountList.childElementCount;
+    const remainingMounts = filteredAndSortedResults.slice(currentMountCount);
+    const mountsToShow = remainingMounts.slice(0, initialDisplayCount);
+    mountList.innerHTML += mountsToShow
+      .map((mount) => mountHtml(mount))
+      .join("");
 
-      showMoreButton.addEventListener("click", function () {
-        const currentMountCount = mountList.childElementCount;
-        const remainingMounts = filteredAndSortedResults.slice(currentMountCount);
-        const mountsToShow = remainingMounts.slice(0, initialDisplayCount);
-        mountList.innerHTML += mountsToShow.map((mount) => mountHtml(mount)).join("");
-    
-        if (filteredAndSortedResults.length <= currentMountCount + initialDisplayCount) {
-          showMoreButton.style.display = "none";
-        }
-      });
+    if (
+      filteredAndSortedResults.length <=
+      currentMountCount + initialDisplayCount
+    ) {
+      showMoreButton.style.display = "none";
+    }
+  });
 
-      showMoreButton.style.display = filter ? "none" : "flex";
+  showMoreButton.style.display = filter ? "none" : "flex";
 }
 
 main();
 
-function showMount(id){
-    localStorage.setItem("id", id);
-    window.location.href = `${window.location.origin}/mount.html`
+function showMount(id) {
+  localStorage.setItem("id", id);
+  window.location.href = `${window.location.origin}/mount.html`;
+}
+
+async function submitted(query) {
+  const searchedMounts = await fetch(
+    `https://ffxivcollect.com/api/mounts?name_en_end=${query}`
+  );
+  const searchedMountsData = await searchedMounts.json();
+
+  mountList.innerHTML = searchedMountsData.results
+    .map((mount) => mountHtml(mount))
+    .join("");
+    showMoreButton.style.display = "none";
 }
 
 function listTitleHtml(expansion) {
@@ -117,3 +134,10 @@ function mountHtml(mount) {
 function filterMounts(event) {
   main(event.target.value);
 }
+
+f.addEventListener("submit", function(event){
+  event.preventDefault();
+
+  const query = document.getElementById("query").value;
+  submitted(query)
+})

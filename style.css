@@ -72,6 +72,30 @@ nav {
   background-position: center;
 }
 
+form {
+  background-color: #d8b371;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+::placeholder{
+  color: #fff;
+  opacity: 0.7;
+}
+
+input {
+  all: unset;
+  font: 16px;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+}
+
+
+
 /*
 *
 * NAV
@@ -129,6 +153,19 @@ nav {
   width: 100%;
 }
 
+.fa-search{
+  color: #fff;
+  
+  fill: currentColor;
+  
+}
+
+.search-bar__btn{
+  display: flex;
+  align-items: center;
+  all: unset;
+  cursor: pointer;
+}
 /*
 *
 * 

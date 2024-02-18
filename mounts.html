@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mounts</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="/mounts.js"></script>
+    <script src="/mounts.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c8e4d183c2.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav>
@@ -28,9 +32,16 @@
         </li>
       </ul>
       <div class="user-panel">
-        <a href="#">Login</a>
-        /
-        <a href="#">Register</a>
+        <form class="search-bar" id="form" role="search" onsubmit="submitted(event); return false;">
+          <input
+            type="search"
+            id="query"
+            name="q"
+            placeholder="Search..."
+            aria-label="Search through site content"
+          />
+          <button class="search-bar__btn"><i class="fas fa-search"></i></button>
+        </form>
       </div>
     </nav>
     <main id="mounts__main">
@@ -54,9 +65,7 @@
             </div>
             <div class="mounts__list"></div>
             <div class="button__wrapper">
-              <button class="show-more button__arrow" >
-                Show More!
-              </button>
+              <button class="show-more button__arrow">Show More!</button>
             </div>
           </div>
         </div>
