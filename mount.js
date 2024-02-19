@@ -72,7 +72,7 @@ function selectedMount(mount) {
             src="./assests/ff14icon.png"
             alt=""
           />
-          <a href="">${mount.sources[0].text}</a>
+          <a class="mount__link" href="">${mount.sources[0].text}</a>
         </div>
       </dd>
 

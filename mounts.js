@@ -123,7 +123,7 @@ function mountHtml(mount) {
         </div>
         <div class="mounts__tags">
           <p class="mounts__patch">Patch:${mount.patch}</p>
-          <p class="mounts__owners">${mount.owned}%</p>
+          <p class="mounts__owners">${mount.owned}</p>
         </div>
       </div>
     </div>
