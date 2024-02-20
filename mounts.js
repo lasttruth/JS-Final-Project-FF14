@@ -1,4 +1,5 @@
 //https://ffxivcollect.com/api/mounts/mount.id
+
 const mountList = document.querySelector(".mounts__list");
 const listTitle = document.querySelector(".mounts__header");
 const showMoreButton = document.querySelector(".show-more");
@@ -83,10 +84,15 @@ async function submitted(query) {
   );
   const searchedMountsData = await searchedMounts.json();
 
-  mountList.innerHTML = searchedMountsData.results
-    .map((mount) => mountHtml(mount))
-    .join("");
+  if (searchedMountsData.results.length === 0) {
+    mountList.innerHTML = "<h1>No results found</h1>";
     showMoreButton.style.display = "none";
+  } else {
+    mountList.innerHTML = searchedMountsData.results
+      .map((mount) => mountHtml(mount))
+      .join("");
+    showMoreButton.style.display = "none";
+  }
 }
 
 function listTitleHtml(expansion) {
@@ -135,9 +141,9 @@ function filterMounts(event) {
   main(event.target.value);
 }
 
-f.addEventListener("submit", function(event){
+f.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const query = document.getElementById("query").value;
-  submitted(query)
-})
+  submitted(query);
+});
