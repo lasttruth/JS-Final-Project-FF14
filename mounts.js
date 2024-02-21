@@ -122,7 +122,7 @@ function mountHtml(mount) {
         <div class="mounts__source--wrapper">
           <img
             class="mounts__source--img"
-            src="/assests/ff14icon.png"
+            src="./assests/ff14icon.png"
             alt=""
           />
           <p class="mounts__source">${mount.sources[0].type}</p>
