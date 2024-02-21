@@ -75,7 +75,7 @@ main();
 
 function showMount(id) {
   localStorage.setItem("id", id);
-  window.location.href = `${window.location.origin}/mount.html`;
+  window.location.href = `${window.location.origin}/JS-Final-Project-FF14/mount.html`;
 }
 
 async function submitted(query) {

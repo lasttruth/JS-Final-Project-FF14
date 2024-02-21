@@ -5,25 +5,20 @@ async function renderMount(id) {
   const mountCard = await fetch(`https://ffxivcollect.com/api/mounts/${id}`);
   const mountCardData = await mountCard.json();
 
-
-    const data = [mountCardData]
+  const data = [mountCardData];
 
   console.log(data);
-  mountEL.innerHTML = data.map(
-    (mount) => selectedMount(mount)).join("");
-  
+  mountEL.innerHTML = data.map((mount) => selectedMount(mount)).join("");
 }
 
 renderMount(id);
 
-function tradeable(trade){
-
-    if(trade){
-        return "Yes";
-    }
-    else{
-        return "No"
-    }
+function tradeable(trade) {
+  if (trade) {
+    return "Yes";
+  } else {
+    return "No";
+  }
 }
 
 function selectedMount(mount) {
