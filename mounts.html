@@ -14,7 +14,7 @@
   </head>
   <body>
     <nav>
-      <a href="#">
+      <a href="/index.html">
         <img id="site-logo" src="./assests/ff14icon.png" alt="" />
       </a>
       <ul class="nav__link--list">
@@ -54,7 +54,7 @@
 
         <ul class="menu__links">
           <li class="menu__list">
-            <a href="" class="menu__link" onclick="closeMenu()">Home</a>
+            <a href="index.html" class="menu__link" onclick="closeMenu()">Home</a>
           </li>
           <li class="menu__list">
             <a href="mounts.html" class="menu__link" onclick="closeMenu()">Find A Mount</a>
@@ -83,6 +83,16 @@
                 <option value="ShB">Shadowbringers</option>
                 <option value="EW">Endwalker</option>
               </select>
+              <form class="search-bar" id="form" role="search" onsubmit="submitted(event); return false;">
+                <input
+                  type="search"
+                  id="query"
+                  name="q"
+                  placeholder="Search..."
+                  aria-label="Search through site content"
+                />
+                <button class="search-bar__btn"><i class="fas fa-search"></i></button>
+              </form>
             </div>
             <div class="mounts__list"></div>
             <div class="button__wrapper">
